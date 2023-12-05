@@ -37,9 +37,8 @@ defmodule AdventOfCode do
 
   for {d, dp} <- Enum.group_by(@day_parts_sorted, fn {d, _} -> d end) do
     def run(unquote(d)) do
-      for {day, part} <- unquote(dp) do
-        run(day, part)
-      end
+      for {day, part} <- unquote(dp),
+          do: run(day, part)
     end
   end
 end

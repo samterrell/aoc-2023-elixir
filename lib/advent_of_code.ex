@@ -21,7 +21,6 @@ defmodule AdventOfCode do
       def run(unquote(day), unquote(part)) do
         File.stream!(unquote("data/day#{day}.txt"))
         |> Stream.map(&String.trim/1)
-        |> Stream.reject(&(&1 == ""))
         |> unquote(module).unquote(fun)()
         |> IO.inspect(label: unquote("Day #{day} part #{part}"))
       end

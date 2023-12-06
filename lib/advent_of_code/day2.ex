@@ -91,7 +91,7 @@ defmodule AdventOfCode.Day2 do
     Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
     """
     |> String.split("\n")
-    |> Stream.reject(&(&1 == ""))
+    |> Stream.map(&String.trim/1)
   end
 
   @doc """
@@ -103,6 +103,7 @@ defmodule AdventOfCode.Day2 do
     max = %Set{red: 12, green: 13, blue: 14}
 
     input
+    |> Stream.reject(&(&1 == ""))
     |> Stream.map(&Game.parse!/1)
     |> Stream.filter(fn game ->
       Enum.all?(game.sets, &Set.subset(max, &1))
@@ -118,6 +119,7 @@ defmodule AdventOfCode.Day2 do
   """
   def part2(input) do
     input
+    |> Stream.reject(&(&1 == ""))
     |> Stream.map(&Game.parse!/1)
     |> Stream.map(&Set.max(&1.sets))
     |> Stream.map(&(&1.red * &1.green * &1.blue))
